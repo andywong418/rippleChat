@@ -1,14 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Message from './Message';
 
-const styles = {
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-    },
-
-};
 export default class Chatbox extends React.Component {
     constructor(props) {
         super(props);
@@ -56,7 +49,7 @@ export default class Chatbox extends React.Component {
             <div className="messagesContainer" ref={(el) => {window.bob = this.messagesEnd = el;}}>
               {messages.map((message, index) => {
                   return (
-                    <p key={index}>{message.username}: {message.content}</p>
+                      <Message key={index} username={message.username} content={message.content} currentUser={this.props.username}/>
                   );
               })}
             </div>
@@ -64,8 +57,8 @@ export default class Chatbox extends React.Component {
 
             <form className="input-form" onSubmit={(e) => this.submitHandler(e)}>
                   <div className="row">
-                      <div className="form-group col-lg-10 col-md-9 col-sm-12">
-                          <input type="text" name="message" className="message-input form-control" value={this.state.message} onChange={(e) => this.setState({message: e.target.value})} />
+                      <div className="form-group col-lg-10 col-md-9 col-sm-10">
+                          <input type="text" placeholder="Enter message..." name="message" className="message-input form-control" value={this.state.message} onChange={(e) => this.setState({message: e.target.value})} />
                       </div>
                       <div className="form-group col-lg-2 col-md-3 col-md-offset-0">
                           <button type="submit" className="btn btn-info">Send</button>

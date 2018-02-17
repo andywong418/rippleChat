@@ -9,6 +9,6 @@ describe('Component: Chatbox', () => {
         const wrapper = shallow(
           <Chatbox messages={[{content: "Hello", username: 'Dros'}]}/>
         );
-        expect(wrapper.find('p').text()).toEqual('Dros: Hello');
+        expect(wrapper.find('button').text()).toEqual('Send');
     });
 });
