@@ -16,6 +16,7 @@ export default class Chatbox extends React.Component {
 
 
     generateRandomMessages() {
+        // Randomly generate messages for random users. Clear and set timeout everytime
         clearTimeout(this.timeInterval);
         const fillerText = ["You're so right", "I love lamp", "Lorem Ipsum", "Blockchain Revolution"];
         // Select random Time
@@ -25,7 +26,7 @@ export default class Chatbox extends React.Component {
         randomUser = Math.floor(Math.random() * fillerText.length);
         this.props.addMessage(randomText, 'User ' + randomUser);
         this.scrollToBottom();
-        this.timeInterval = setInterval(this.generateRandomMessages, randomTime + 3000);
+        this.timeInterval = setTimeout(this.generateRandomMessages, randomTime + 3000);
     }
 
     scrollToBottom() {

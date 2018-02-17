@@ -89,3 +89,15 @@ p.messageRight {
   padding-left: 10px;
   padding-right: 10px;
 }
+
+@media screen and (max-width: 767px) {
+    .messagesContainer {
+      margin-bottom: 90px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+  .message-input {
+    width: auto;
+  }
+}
