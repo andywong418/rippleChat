@@ -22,6 +22,7 @@ class AppContainer extends React.Component {
     render() {
         return (
             <div>
+                <div className="backGroundScreen" />
                 <Header username={this.props.username}/>
                 <Chatbox messages = {this.props.messages} addMessage={this.props.addMessage} username={this.props.username}/>
             </div>
