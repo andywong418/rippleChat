@@ -1,4 +1,45 @@
-h1 {
+html {
+  height: 100%
+}
+
+body {
+  background-image: url('https://cdn.ripple.com/wp-content/themes/ripple-beta/assets/img/home/home-bg-new.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.header{
   font-family: helvetica;
   font-weight: 200;
+  text-align: center;
+  margin-top: 20px;
+  color: white;
+}
+
+.header h1 {
+  margin-top: -10px;
+}
+
+.chatContainer {
+  border: 2px solid grey;
+  margin-top: 30px;
+  height: 500px;
+  position: relative;
+  padding: 20px;
+  width: 60%;
+  margin-left: 20%;
+  border-radius: 10px;
+  background: white;
+  z-index: 5;
+}
+
+.messagesContainer {
+  height: 400px;
+  overflow: scroll;
+}
+.input-form {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }

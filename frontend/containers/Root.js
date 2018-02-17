@@ -1,3 +1,5 @@
+//  Only display dev tools in development mode
+
 if (process.env.NODE_ENV === 'production') {
     module.exports = require('./Root.prod');
 } else {
