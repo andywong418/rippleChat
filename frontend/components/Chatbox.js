@@ -47,12 +47,14 @@ export default class Chatbox extends React.Component {
         const {messages} = this.props;
         return (
           <div className="chatContainer container">
-            <div className="messagesContainer" ref={(el) => {window.bob = this.messagesEnd = el;}}>
-              {messages.map((message, index) => {
-                  return (
-                      <Message key={index} username={message.username} content={message.content} currentUser={this.props.username}/>
-                  );
-              })}
+            <div className="messagesContainer">
+              <div className="messagesContainerScrollHide" ref={(el) => {window.bob = this.messagesEnd = el;}}>
+                  {messages.map((message, index) => {
+                      return (
+                          <Message key={index} username={message.username} content={message.content} currentUser={this.props.username}/>
+                      );
+                  })}
+              </div>
             </div>
 
 
