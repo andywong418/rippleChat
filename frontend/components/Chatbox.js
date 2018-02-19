@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Message from './Message';
 
 export default class Chatbox extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -11,9 +12,8 @@ export default class Chatbox extends React.Component {
 
         const randomTime = Math.random() * 10000;
         this.generateRandomMessages = this.generateRandomMessages.bind(this);
-        this.timeInterval = setTimeout(this.generateRandomMessages, randomTime + 3000);
+        this.timeInterval = setTimeout(this.generateRandomMessages, randomTime + 2000);
     }
-
 
     generateRandomMessages() {
         // Randomly generate messages for random users. Clear and set timeout everytime
@@ -26,7 +26,7 @@ export default class Chatbox extends React.Component {
         randomUser = Math.floor(Math.random() * fillerText.length);
         this.props.addMessage(randomText, 'User ' + randomUser);
         this.scrollToBottom();
-        this.timeInterval = setTimeout(this.generateRandomMessages, randomTime + 3000);
+        this.timeInterval = setTimeout(this.generateRandomMessages, randomTime + 2000);
     }
 
     scrollToBottom() {
@@ -47,26 +47,24 @@ export default class Chatbox extends React.Component {
         const {messages} = this.props;
         return (
           <div className="chatContainer container">
-            <div className="messagesContainer">
-              <div className="messagesContainerScrollHide" ref={(el) => {window.bob = this.messagesEnd = el;}}>
-                  {messages.map((message, index) => {
-                      return (
-                          <Message key={index} username={message.username} content={message.content} currentUser={this.props.username}/>
-                      );
-                  })}
-              </div>
-            </div>
-
-
-            <form className="input-form" onSubmit={(e) => this.submitHandler(e)}>
-                  <div className="row">
-                      <div className="form-group col-lg-10 col-md-9 col-sm-10">
-                          <input type="text" placeholder="Enter message..." name="message" className="message-input form-control" value={this.state.message} onChange={(e) => this.setState({message: e.target.value})} />
-                      </div>
-                      <div className="form-group col-lg-2 col-md-3 col-md-offset-0">
-                          <button type="submit" className="btn btn-info">Send</button>
-                      </div>
+              <div className="messagesContainer">
+                  <div className="messagesContainerScrollHide" ref={(el) => {window.bob = this.messagesEnd = el;}}>
+                      {messages.map((message, index) => {
+                          return (
+                              <Message key={index} username={message.username} content={message.content} currentUser={this.props.username}/>
+                          );
+                      })}
                   </div>
+            </div>
+            <form className="input-form" onSubmit={(e) => this.submitHandler(e)}>
+                <div className="row">
+                    <div className="form-group col-lg-10 col-md-9 col-sm-10">
+                        <input type="text" placeholder="Enter message..." name="message" className="message-input form-control" value={this.state.message} onChange={(e) => this.setState({message: e.target.value})} />
+                    </div>
+                    <div className="form-group col-lg-2 col-md-3 col-md-offset-0">
+                        <button type="submit" className="btn btn-info">Send</button>
+                    </div>
+                </div>
               </form>
           </div>
         );
