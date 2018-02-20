@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Header = ({username}) => {
+  
     return (
       <div className="header">
         <div>

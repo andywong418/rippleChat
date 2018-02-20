@@ -12,7 +12,7 @@ describe('Component: Message', () => {
           <Message username="User 1" content="Great chatroom!" currentUser="dros"/>
         );
         expect(wrapper.find('p').text().trim()).toEqual('Great chatroom!');
-        chai.expect(wrapper.find('div.messageLeft')).to.be.present();
+        chai.expect(wrapper.find('div.message-left')).to.be.present();
     });
 
     it('should render the right Message component', () => {
@@ -20,6 +20,6 @@ describe('Component: Message', () => {
           <Message username="dros" content="Great chatroom again!" currentUser="dros"/>
         );
         expect(anotherWrapper.find('p').text().trim()).toEqual('Great chatroom again!');
-        chai.expect(anotherWrapper.find('p')).to.have.className('messageRight');
+        chai.expect(anotherWrapper.find('p')).to.have.className('message-right');
     });
 });

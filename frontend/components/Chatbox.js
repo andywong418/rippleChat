@@ -9,7 +9,6 @@ export default class Chatbox extends React.Component {
         this.state = {
             message: ''
         };
-
         const randomTime = Math.random() * 10000;
         this.generateRandomMessages = this.generateRandomMessages.bind(this);
         this.timeInterval = setTimeout(this.generateRandomMessages, randomTime + 2000);
@@ -30,7 +29,8 @@ export default class Chatbox extends React.Component {
     }
 
     scrollToBottom() {
-        setTimeout(()=> {this.messagesEnd.scrollTop = this.messagesEnd.scrollHeight;}, 15);
+        // Set time out so that function to scroll to bottom is in callback queue and is called after redux state update.
+        setTimeout(() => {this.messagesEnd.scrollTop = this.messagesEnd.scrollHeight;}, 15);
     }
 
     submitHandler(e) {
@@ -51,7 +51,11 @@ export default class Chatbox extends React.Component {
                   <div className="messages-container-scroll-hide" ref={(el) => {window.bob = this.messagesEnd = el;}}>
                       {messages.map((message, index) => {
                           return (
-                              <Message key={index} username={message.username} content={message.content} currentUser={this.props.username}/>
+                              <Message
+                              key={index}
+                              username={message.username}
+                              content={message.content}
+                              currentUser={this.props.username}/>
                           );
                       })}
                   </div>
@@ -59,7 +63,13 @@ export default class Chatbox extends React.Component {
             <form className="input-form" onSubmit={(e) => this.submitHandler(e)}>
                 <div className="row">
                     <div className="form-group col-lg-10 col-md-9 col-sm-10">
-                        <input type="text" placeholder="Enter message..." name="message" className="message-input form-control" value={this.state.message} onChange={(e) => this.setState({message: e.target.value})} />
+                        <input
+                        type="text"
+                        placeholder="Enter message..."
+                        name="message"
+                        className="message-input form-control"
+                        value={this.state.message}
+                        onChange={(e) => this.setState({message: e.target.value})} />
                     </div>
                     <div className="form-group col-lg-2 col-md-3 col-md-offset-0">
                         <button type="submit" className="btn btn-info">Send</button>
