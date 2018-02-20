@@ -14,13 +14,13 @@ const Message = ({username, content, currentUser}) => {
     if(username === currentUser) {
       // the message is sent by user in browser
         return (
-          <p className="messageRight">{content}</p>
+          <p className="message-right">{content}</p>
         );
     }
     return (
       // it's a random user.
-      <div className="messageLeft">
-        <span className="spanLeft" style={styles}><i className={iconsArr[userIndex]} /></span>
+      <div className="message-left">
+        <span className="span-left" style={styles}><i className={iconsArr[userIndex]} /></span>
         <p style={styles}> {content} </p>
 
       </div>
