@@ -2,7 +2,7 @@
 Simple chat app which allows user input and randomly generated Messages to appear on a chat log. Built with React + Redux and Bootstrap for styling.
 ## Running
 
-Install dependencies: `$ npm install` or `$ yarn`
+Install dependencies: `$ npm install`
 
 Fire up a development server: `$ npm run dev` - this includes a redux development tool which display application state.
 
