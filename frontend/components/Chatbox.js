@@ -7,11 +7,21 @@ export default class Chatbox extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            message: ''
+            message: '',
+            websocket: new WebSocket("ws://127.0.0.1:" + location.port + '/'),
+            colorHash: {},
         };
         const randomTime = Math.random() * 10000;
         this.generateRandomMessages = this.generateRandomMessages.bind(this);
-        this.timeInterval = setTimeout(this.generateRandomMessages, randomTime + 2000);
+        // this.timeInterval = setTimeout(this.generateRandomMessages, randomTime + 2000);
+    }
+
+    componentDidMount() {
+        this.state.websocket.onmessage = (message) => {
+            const newMessage = JSON.parse(message.data);
+            console.log("WHAT?", newMessage);
+            this.props.addMessage(newMessage.message, newMessage.username);
+        };
     }
 
     generateRandomMessages() {
@@ -37,12 +47,15 @@ export default class Chatbox extends React.Component {
         e.preventDefault();
         // Check for empty spaces
         if(this.state.message.trim() !== '') {
-            this.props.addMessage(this.state.message, this.props.username);
+            this.state.websocket.send(JSON.stringify({"message": this.state.message, "username": this.props.username}));
         }
         this.setState({message: ''});
         this.scrollToBottom();
     }
 
+    updateColorHash(newObj) {
+        this.setState({colorHash: newObj});
+    }
     render() {
         const {messages} = this.props;
         return (
@@ -55,7 +68,9 @@ export default class Chatbox extends React.Component {
                               key={index}
                               username={message.username}
                               content={message.content}
-                              currentUser={this.props.username}/>
+                              currentUser={this.props.username}
+                              colorHash = {this.state.colorHash}
+                              updateColorHash= {(newObj) => this.updateColorHash(newObj)}/>
                           );
                       })}
                   </div>
